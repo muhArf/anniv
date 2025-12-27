@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ucapan Anniversary Romantis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            color: #5a3d5c;
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header dengan animasi hati */
+        .header {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ff6b8b;
+            font-size: 20px;
+            opacity: 0;
+            animation: floatUp 5s infinite linear;
+        }
+        
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.8rem;
+            color: #ff4081;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #7a4b7c;
+            margin-bottom: 30px;
+        }
+        
+        /* Kartu utama */
+        .card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 25px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid #ffccd5;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ffcccc, #ffb3c6, #ffccd5);
+            z-index: -1;
+            border-radius: 30px;
+            opacity: 0.5;
+        }
+        
+        .card-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.2rem;
+            color: #ff4081;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .message-box {
+            background-color: #fff9fb;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-left: 5px solid #ff6b8b;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+        
+        .message-box::before {
+            content: "❤️";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+            color: #5a3d5c;
+        }
+        
+        /* Foto dan kutipan */
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid #ffccd5;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .photo-frame::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.3) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ffccd5, #ffb3c6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+            color: #ff6b8b;
+        }
+        
+        .quote {
+            font-style: italic;
+            text-align: center;
+            margin: 25px 0;
+            padding: 15px;
+            background-color: #fff0f3;
+            border-radius: 15px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+        
+        .quote::before, .quote::after {
+            content: '"';
+            font-size: 2rem;
+            color: #ff6b8b;
+            position: absolute;
+        }
+        
+        .quote::before {
+            top: 5px;
+            left: 10px;
+        }
+        
+        .quote::after {
+            bottom: -10px;
+            right: 10px;
+        }
+        
+        /* Countdown */
+        .countdown {
+            display: flex;
+            justify-content: space-between;
+            margin: 25px 0;
+        }
+        
+        .countdown-item {
+            text-align: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            border-radius: 15px;
+            padding: 15px 5px;
+            flex: 1;
+            margin: 0 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .countdown-value {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ff4081;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            color: #7a4b7c;
+            margin-top: 5px;
+        }
+        
+        /* Tombol musik dan interaksi */
+        .music-player {
+            text-align: center;
+            margin: 25px 0;
+        }
+        
+        .music-btn {
+            background: linear-gradient(135deg, #ff6b8b, #ff4081);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            padding: 12px 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+            transition: transform 0.3s;
+        }
+        
+        .music-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Bagian ucapan personal */
+        .personal-message {
+            background-color: #fff0f3;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 25px;
+            border: 2px dashed #ff6b8b;
+        }
+        
+        .personal-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff4081;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .personal-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #5a3d5c;
+            text-align: justify;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid rgba(255, 255, 255, 0.5);
+            color: #7a4b7c;
+            font-size: 0.9rem;
+        }
+        
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #ff4081;
+            margin-top: 10px;
+        }
+        
+        /* Animasi */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Responsif tambahan */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .title {
+                font-size: 2.3rem;
+            }
+            
+            .card {
+                padding: 20px 15px;
+            }
+            
+            .countdown {
+                flex-wrap: wrap;
+            }
+            
+            .countdown-item {
+                flex: 0 0 calc(50% - 10px);
+                margin-bottom: 10px;
+            }
+            
+            .photo-frame {
+                width: 180px;
+                height: 180px;
+            }
+        }
+        
+        /* Efek interaktif */
+        .hidden-message {
+            display: none;
+            background-color: #fff;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            border: 2px solid #ffccd5;
+            animation: pulse 1.5s;
+        }
+        
+        .reveal-btn {
+            background: linear-gradient(135deg, #ffccd5, #ffb3c6);
+            border: none;
+            border-radius: 50px;
+            color: #ff4081;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .reveal-btn:hover {
+            background: linear-gradient(135deg, #ffb3c6, #ffccd5);
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header dengan animasi hati -->
+        <div class="header">
+            <div class="hearts" id="hearts-container"></div>
+            <h1 class="title">Happy Anniversary!</h1>
+            <p class="subtitle">Merayakan cinta yang semakin indah setiap harinya</p>
+        </div>
+        
+        <!-- Kartu utama -->
+        <div class="card">
+            <h2 class="card-title">Untuk Yang Tercinta</h2>
+            
+            <!-- Foto placeholder -->
+            <div class="photo-frame">
+                <div class="photo-placeholder">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+            
+            <!-- Pesan utama -->
+            <div class="message-box">
+                <p class="message" id="main-message">
+                    Selamat anniversary sayangku! Terima kasih telah membuat hidupku lebih berarti dengan kehadiranmu. Setiap hari bersamamu adalah anugerah terindah yang tak ternilai.
+                </p>
+            </div>
+            
+            <!-- Kutipan romantis -->
+            <div class="quote">
+                "Cinta sejati bukan tentang menemukan orang yang sempurna, tapi tentang melihat orang yang tidak sempurna dengan cara yang sempurna."
+            </div>
+            
+            <!-- Countdown anniversary -->
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div class="countdown-value" id="years">0</div>
+                    <div class="countdown-label">Tahun</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="days">0</div>
+                    <div class="countdown-label">Hari</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="hours">0</div>
+                    <div class="countdown-label">Jam</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-value" id="minutes">0</div>
+                    <div class="countdown-label">Menit</div>
+                </div>
+            </div>
+            
+            <!-- Tombol musik -->
+            <div class="music-player">
+                <button class="music-btn" id="music-button">
+                    <i class="fas fa-music"></i> Putar Musik Romantis
+                </button>
+                <audio id="anniversary-music" loop>
+                    <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+            
+            <!-- Pesan rahasia -->
+            <button class="reveal-btn" id="reveal-button">
+                <i class="fas fa-gift"></i> Klik untuk Pesan Spesial
+            </button>
+            <div class="hidden-message" id="hidden-message">
+                <p>Kamu adalah orang terhebat yang pernah aku temui. Setiap tawa, setiap pelukan, setiap momen bersamamu adalah harta karun dalam hidupku. Aku mencintaimu lebih dari kata-kata bisa ungkapkan! ❤️</p>
+            </div>
+        </div>
+        
+        <!-- Bagian ucapan personal -->
+        <div class="personal-message">
+            <h3 class="personal-title">Ucapan Dari Hatiku</h3>
+            <p class="personal-text" id="personal-text">
+                Sayangku, di hari anniversary kita yang spesial ini, aku ingin mengucapkan terima kasih atas semua kebahagiaan yang telah kau berikan. Bersamamu, aku belajar arti cinta sejati yang tak hanya tentang perasaan, tapi juga tentang komitmen, pengertian, dan saling mendukung.
+                <br><br>
+                Aku bersyukur setiap hari karena memiliki seseorang sepertimu dalam hidupku. Kamu adalah teman, kekasih, dan partner terbaik yang bisa seseorang impikan. Semoga kita terus bersama, melewati semua suka dan duka, membangun lebih banyak kenangan indah di tahun-tahun mendatang.
+                <br><br>
+                Aku mencintaimu sekarang dan selamanya.
+            </p>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p>Dibuat dengan <i class="fas fa-heart" style="color:#ff4081;"></i> untuk anniversary spesial kita</p>
+            <div class="signature">- Dari yang selalu mencintaimu -</div>
+        </div>
+    </div>
+
+    <script>
+        // Animasi hati
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            const heartCount = 15;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                heartsContainer.appendChild(heart);
+            }
+        }
+        
+        // Countdown anniversary (disetel untuk 1 tahun anniversary)
+        function updateCountdown() {
+            // Tanggal anniversary (misalnya: 1 tahun yang lalu dari hari ini)
+            const anniversaryDate = new Date();
+            anniversaryDate.setFullYear(anniversaryDate.getFullYear() - 1);
+            
+            // Hitung perbedaan waktu
+            const now = new Date();
+            const diff = now - anniversaryDate;
+            
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            document.getElementById('years').textContent = years;
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+        }
+        
+        // Musik player
+        const musicButton = document.getElementById('music-button');
+        const audio = document.getElementById('anniversary-music');
+        let isPlaying = false;
+        
+        musicButton.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                musicButton.innerHTML = '<i class="fas fa-music"></i> Putar Musik Romantis';
+            } else {
+                audio.play().catch(e => {
+                    // Jika autoplay diblokir, beri tahu pengguna
+                    alert("Klik 'OK' lalu klik tombol musik lagi untuk memutar musik.");
+                });
+                musicButton.innerHTML = '<i class="fas fa-pause"></i> Jeda Musik';
+            }
+            isPlaying = !isPlaying;
+        });
+        
+        // Pesan rahasia
+        const revealButton = document.getElementById('reveal-button');
+        const hiddenMessage = document.getElementById('hidden-message');
+        
+        revealButton.addEventListener('click', function() {
+            if (hiddenMessage.style.display === 'block') {
+                hiddenMessage.style.display = 'none';
+                revealButton.innerHTML = '<i class="fas fa-gift"></i> Klik untuk Pesan Spesial';
+            } else {
+                hiddenMessage.style.display = 'block';
+                revealButton.innerHTML = '<i class="fas fa-heart"></i> Tutup Pesan Spesial';
+            }
+        });
+        
+        // Efek interaktif pada pesan utama
+        const mainMessage = document.getElementById('main-message');
+        mainMessage.addEventListener('click', function() {
+            this.classList.toggle('pulse');
+            
+            // Ganti pesan saat diklik
+            const messages = [
+                "Selamat anniversary sayangku! Terima kasih telah membuat hidupku lebih berarti dengan kehadiranmu.",
+                "Setiap hari bersamamu adalah harta karun yang tak ternilai harganya.",
+                "Kamu adalah alasan di balik senyumku setiap hari.",
+                "Aku bersyukur kepada alam semesta karena telah mempertemukan kita.",
+                "Cintaku padamu tumbuh lebih kuat dengan setiap detik yang berlalu."
+            ];
+            
+            const randomIndex = Math.floor(Math.random() * messages.length);
+            this.textContent = messages[randomIndex];
+        });
+        
+        // Pesan personal bisa diedit
+        const personalText = document.getElementById('personal-text');
+        personalText.addEventListener('click', function() {
+            const newText = prompt("Edit ucapan personal Anda (tuliskan dari hati):", personalText.textContent);
+            if (newText && newText.trim() !== "") {
+                personalText.textContent = newText;
+            }
+        });
+        
+        // Inisialisasi saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', function() {
+            createHearts();
+            updateCountdown();
+            
+            // Update countdown setiap menit
+            setInterval(updateCountdown, 60000);
+            
+            // Efek scroll halus
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 20,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
